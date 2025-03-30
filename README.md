@@ -1,4 +1,6 @@
-Simple implementation of lisp interpreter in Go
+An implementation of lisp interpreter in Go
+
+![Diagram](diagram.png)
 
 ### Features
 

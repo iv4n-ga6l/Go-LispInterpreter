@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -104,4 +105,19 @@ type LispNil struct{}
 // String returns the string representation of the nil
 func (n *LispNil) String() string {
 	return NIL
+}
+
+// Environment represents the mapping of symbols to their values
+type Environment map[string]LispValue
+
+// LispError represents an error with line and column information
+type LispError struct {
+	Message string
+	Line    int
+	Column  int
+}
+
+// Error returns the error message
+func (e *LispError) Error() string {
+	return fmt.Sprintf("Error at line %d, column %d: %s", e.Line, e.Column, e.Message)
 }

@@ -8,21 +8,6 @@ import (
 	"strings"
 )
 
-// Environment represents the mapping of symbols to their values
-type Environment map[string]LispValue
-
-// LispError represents an error with line and column information
-type LispError struct {
-	Message string
-	Line    int
-	Column  int
-}
-
-// Error returns the error message
-func (e *LispError) Error() string {
-	return fmt.Sprintf("Error at line %d, column %d: %s", e.Line, e.Column, e.Message)
-}
-
 // Eval evaluates a Lisp expression in the given environment
 func Eval(env Environment, expr LispValue) (LispValue, error) {
 	switch v := expr.(type) {
