@@ -138,6 +138,13 @@ go run .
 go run . script.lisp
 ````
 
+- Web mode
+````
+go run . server
+````
+
+![Cclisp IDE](ide.png)
+
 ### Testing
 ````
 go test -v
