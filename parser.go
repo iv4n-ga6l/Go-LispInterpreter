@@ -2,13 +2,6 @@ package main
 
 import (
 	"strconv"
-	"sync"
-)
-
-// a cache for parsed expressions
-var (
-	parseCache     = make(map[string]LispValue)
-	parseCacheLock sync.RWMutex
 )
 
 // Parse reads tokens and constructs a Lisp expression tree
@@ -16,15 +9,6 @@ func Parse(tokens []Token) (LispValue, []Token, error) {
 	if len(tokens) == 0 {
 		return nil, nil, &LispError{Message: "unexpected EOF while reading", Line: 0, Column: 0}
 	}
-
-	// Check cache for parsed expression
-	cacheKey := tokensToString(tokens)
-	parseCacheLock.RLock()
-	if cachedExpr, ok := parseCache[cacheKey]; ok {
-		parseCacheLock.RUnlock()
-		return cachedExpr, nil, nil
-	}
-	parseCacheLock.RUnlock()
 
 	token := tokens[0]
 	tokens = tokens[1:]
@@ -63,11 +47,6 @@ func Parse(tokens []Token) (LispValue, []Token, error) {
 	default:
 		result = &LispAtom{Value: token.Value}
 	}
-
-	// Cache the parsed expression
-	parseCacheLock.Lock()
-	parseCache[cacheKey] = result
-	parseCacheLock.Unlock()
 
 	return result, tokens, nil
 }
