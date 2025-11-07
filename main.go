@@ -204,10 +204,7 @@ func main() {
 			port = os.Args[2]
 		}
 
-		fmt.Printf("🚀 Lisp Interpreter API Server starting on http://localhost:%s\n", port)
-		fmt.Printf("📊 API Endpoint: POST /api/visualize\n")
-		fmt.Printf("🌐 Web UI: Run 'cd visualizer && npm run dev' then open http://localhost:3000\n")
-		fmt.Printf("\n💡 Press Ctrl+C to stop the server\n\n")
+		fmt.Printf("Lisp Interpreter API Server starting on http://localhost:%s\n", port)
 
 		log.Fatal(http.ListenAndServe(":"+port, nil))
 	} else if len(os.Args) > 1 {
