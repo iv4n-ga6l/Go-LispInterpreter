@@ -126,7 +126,7 @@ Formatting
 
 ### Run
 
-#### Web Visualizer Mode (Recommended)
+#### Web Visualizer Mode 
 ````
 # Terminal 1: Start the Go backend API server
 go run . server
