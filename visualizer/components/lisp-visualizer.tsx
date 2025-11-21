@@ -56,7 +56,14 @@ interface LispVisualizerProps {
   onVisualize?: () => void
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
+const getAPIBase = () => {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL
+  }
+  return "http://localhost:8080"
+}
+
+const API_BASE = getAPIBase()
 
 // Custom node component
 const CustomNode = ({ data }: { data: any }) => {
