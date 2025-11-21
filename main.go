@@ -99,6 +99,7 @@ func serveVisualizer(w http.ResponseWriter, r *http.Request) {
 	// Serve static files from Next.js build if available
 	nextBuildPath := "./visualizer/out"
 	if _, err := os.Stat(nextBuildPath); err == nil {
+		println("Serving from Next.js build")
 		// Next.js static export exists
 		fs := http.FileServer(http.Dir(nextBuildPath))
 		fs.ServeHTTP(w, r)
