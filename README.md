@@ -130,13 +130,8 @@ Formatting
 
 #### Web Visualizer Mode 
 ````
-# Terminal 1: Start the Go backend API server
-go run . server
-
-# Terminal 2: Start the Next.js frontend
-cd visualizer
-npm install 
-npm run dev
+go run . server-api
+go run . server-visualizer
 ````
 
 ![LispViz](lispViz.png)

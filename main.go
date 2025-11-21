@@ -195,9 +195,7 @@ func main() {
 	env = initEnvironment()
 
 	// Check if running in server mode
-	if len(os.Args) > 1 && os.Args[1] == "server" {
-		// HTTP Server mode for visualizer API
-		http.HandleFunc("/", serveVisualizer)
+	if len(os.Args) > 1 && os.Args[1] == "server-api" {
 		http.HandleFunc("/api/visualize", handleVisualize)
 
 		port := "8080"
@@ -206,6 +204,17 @@ func main() {
 		}
 
 		fmt.Printf("Lisp Interpreter API Server starting on http://localhost:%s\n", port)
+
+		log.Fatal(http.ListenAndServe(":"+port, nil))
+	} else if len(os.Args) > 1 && os.Args[1] == "server-visualizer" {
+		http.HandleFunc("/", serveVisualizer)
+
+		port := "8081"
+		if len(os.Args) > 2 {
+			port = os.Args[2]
+		}
+
+		fmt.Printf("Lisp Interpreter API Visualizer starting on http://localhost:%s\n", port)
 
 		log.Fatal(http.ListenAndServe(":"+port, nil))
 	} else if len(os.Args) > 1 {
